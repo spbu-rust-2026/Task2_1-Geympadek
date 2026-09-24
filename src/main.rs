@@ -3,8 +3,19 @@ fn main() {
     println!("{}", process(&mut string));
 }
 
-fn process(_text: &mut String) -> &str {
-    todo!("исправьте заимствования и реализуйте process");
+fn process(text: &mut String) -> &str {
+    text.push('!');
+    let trimmed = text.trim();
+    match trimmed.split_whitespace().next() {
+        Some(val) => {
+            if val.len() == trimmed.len() {
+                &val[0..val.len() - 1]
+            } else {
+                val
+            }
+        }
+        None => &text[0..0],
+    }
 }
 
 #[cfg(test)]
